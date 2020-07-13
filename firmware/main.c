@@ -86,6 +86,8 @@ static void reboot(void)
 
 static void wishbone_test(void)
 {
+	flush_cpu_icache();
+	flush_cpu_dcache();
 	printf("wishbone burst test...\n");
 	volatile unsigned int *dram_array = (unsigned int *)(ADC_SRAM_BASE);
 

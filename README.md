@@ -10,6 +10,14 @@ Steps to replicate on an ECP5\_EVN:
 1. Run the "workaround" command, and see that all memory locations are updated.
 The workaround function reads 64 locations from the MAIN\_RAM prior to triggering a burst write. 
 
+
+# Solution
+[Solved by Greg Davill](https://github.com/loxodes/dma\_burst/issues/), I needed to invalidate the CPU cache before accessing shared memory with the following:
+```
+flush_cpu_icache();
+flush_cpu_dcache();
+```
+
 # Example Output
 ```
 jtklein@aiur:~/repos/dma_burst$ ./term.sh 
